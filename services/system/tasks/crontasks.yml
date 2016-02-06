@@ -1,4 +1,4 @@
 ---
-  
+
   - name: Setup share update cron task
-    cron: name="Update share counts" minute="*/5" job="curl --data "action=refresh_share_count_in_db_cron" http://piwee.net/wp-admin/admin-ajax.php"
+    cron: name="Update share counts" hour="3" minute="30" job="curl --data "action=refresh_share_count_in_db_cron" http://piwee.net/wp-admin/admin-ajax.php"
