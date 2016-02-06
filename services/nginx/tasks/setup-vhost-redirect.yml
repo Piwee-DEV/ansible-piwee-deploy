@@ -1,0 +1,15 @@
+---
+  - name: add nginx "piwee" vhost
+    action: template src=templates/vhost-redirect.j2 dest=/etc/nginx/sites-available/piwee
+    notify:
+      - restart nginx
+
+  - name: link nginx "piwee" vhost in sites-enabled
+    action: file src=/etc/nginx/sites-available/piwee dest=/etc/nginx/sites-enabled/piwee state=link
+    notify:
+      - restart nginx
+
+  - name: Restart NGINX
+    service:
+        name: 'nginx'
+        state: 'restarted'

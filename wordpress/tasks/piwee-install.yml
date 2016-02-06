@@ -1,0 +1,46 @@
+---
+
+  - name: Install GIT
+    action: apt name=git
+
+  - name: Git clone Piwee
+    command: git clone https://github.com/Piwee-DEV/piwee-new.git /var/www/piwee
+
+  - name: Download WordPress
+    get_url: url=http://wordpress.org/wordpress-4.4.2.tar.gz dest=/var/www/wordpress-4.4.2.tar.gz
+
+  - name: Extract archive
+    unarchive: src=/var/www/wordpress-4.4.2.tar.gz dest=/var/www copy=no
+
+  - name: Copy all WP files to piwee
+    shell: cp -R /var/www/wordpress/* /var/www/piwee
+
+  - name: Remove wordpress archive
+    file: path=/var/www/wordpress-4.4.2.tar.gz state=absent
+
+  - name: Remove wordpress empty folder
+    file: path=/var/www/wordpress state=absent
+
+  - name: Copy assets to server
+    copy: src={{ assetsfolder }} dest=/tmp owner=www-data group=www-data mode=755
+
+  - name: Copy WP config
+    shell: cp /tmp/piwee-assets/config/wp-config.php /var/www/piwee
+
+  - name: Import database
+    shell: mysql -uroot -p{{ mysql_root_password }} piwee < /tmp/piwee-assets/SQL/piwee.sql
+
+  - name: Copy uploads folder
+    shell: cp -R /tmp/piwee-assets/uploads /var/www/piwee/uploads
+
+  - name: Make sure theme directory exists
+    file: path=/var/www/piwee/themes state=directory owner=www-data group=www-data
+
+  - name: Make sure the plugins directory exists
+    file: path=/var/www/piwee/plugins state=directory owner=www-data group=www-data
+
+  - name: Make sure the whole piwee directory is owned by the correct group and user
+    file: path=/var/www/piwee state=directory owner=www-data group=www-data recurse=yes
+
+  - name: Clear assets folder
+    file: path=/tmp/piwee-assets state=absent

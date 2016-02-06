@@ -1,0 +1,4 @@
+---
+
+  - name: Setup env variable
+    shell: echo "LC_ALL=C" > /etc/environment

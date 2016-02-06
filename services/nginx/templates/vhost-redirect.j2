@@ -1,0 +1,25 @@
+server {
+        listen   80;
+
+        root /var/www/piwee;
+        index index.html index.htm index.php;
+        server_name piwee.net www.piwee.net;
+
+        fastcgi_buffers 8 16k;
+        fastcgi_buffer_size 32k;
+
+        location / {
+                add_header Access-Control-Allow-Origin *;
+                try_files $uri $uri/ /index.php;
+        }
+
+        location ~ \.php$ {
+                fastcgi_split_path_info ^(.+\.php)(/.+)$;
+                fastcgi_pass 127.0.0.1:9426;
+                fastcgi_index index.php;
+                fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                fastcgi_keep_conn on;
+                proxy_buffering off;
+                include fastcgi_params;
+        }
+}

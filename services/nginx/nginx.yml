@@ -1,0 +1,9 @@
+---
+  - hosts: all
+
+    tasks:
+      - include: tasks/setup-nginx.yml
+      - include: tasks/setup-vhost-redirect.yml
+
+    handlers:
+      - include: handlers/handlers.yml

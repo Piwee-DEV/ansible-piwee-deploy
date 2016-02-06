@@ -1,0 +1,17 @@
+---
+
+  - name: Restart MariaDB
+    service:
+        name: 'mysql'
+        state: 'restarted'
+
+  - name: Update MariaDB password to make sure root can connect
+    shell: mysql --user=root --execute="UPDATE mysql.user SET Password=PASSWORD('{{ mysql_root_password }}') where USER='root';"
+
+  - name: Restart MariaDB
+    service:
+        name: 'mysql'
+        state: 'restarted'
+
+  - name: Prepare the wordpress database
+    shell: mysql --user=root --password="{{ mysql_root_password }}" --execute="CREATE DATABASE IF NOT EXISTS piwee"

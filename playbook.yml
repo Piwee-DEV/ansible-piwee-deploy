@@ -1,0 +1,18 @@
+---
+  - hosts: all
+    pre_tasks:
+      - name: Update APT's cache
+        apt: update_cache=yes
+
+      - name: Install python-software-properties and software-properties-common
+        apt: pkg={{item}} state=latest
+        with_items:
+          - software-properties-common
+          - python-software-properties
+
+  - include: services/system/system.yml
+  - include: services/nginx/nginx.yml
+  - include: services/mariadb/mariadb.yml
+  - include: services/hhvm/hhvm.yml
+  - include: services/memcached/memcached.yml
+  - include: wordpress/wordpress.yml

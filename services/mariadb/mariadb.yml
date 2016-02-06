@@ -1,0 +1,20 @@
+---
+  - hosts: all
+
+    handlers:
+      - include: handlers.yml
+
+    tasks:
+      - name: Install python-pycurl
+        apt: pkg=python-pycurl state=latest
+
+      - name: Add MariaDB key
+        apt_key: 'url=http://keyserver.ubuntu.com/pks/lookup?op=get&search=0xcbcb082a1bb943db'
+
+      - name: Add MariaDB Repository
+        apt_repository: repo='deb http://ftp.yz.yamagata-u.ac.jp/pub/dbms/mariadb/repo/10.0/ubuntu trusty main'
+
+      - name: Install MariaDB
+        apt: pkg=mariadb-server state=latest update_cache=yes
+        notify:
+          - mysql_secure_installation

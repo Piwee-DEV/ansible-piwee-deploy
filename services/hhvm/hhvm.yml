@@ -1,0 +1,21 @@
+---
+  - hosts: all
+
+    handlers:
+      - name: Restart HHVM
+        action: service name=hhvm pattern=/etc/init.d/hhvm state=restarted enabled=yes
+
+    tasks:
+      - name: Add HHVM key
+        apt_key: url=http://dl.hhvm.com/conf/hhvm.gpg.key
+
+      - name: Add HHVM repository
+        apt_repository: repo='deb http://dl.hhvm.com/ubuntu trusty main'
+
+      - name: Install HHVM
+        apt: pkg=hhvm state=latest update_cache=yes
+
+      - name: write server.ini
+        action: template src=templates/server.ini.j2 dest=/etc/hhvm/server.ini
+        notify:
+          - Restart HHVM

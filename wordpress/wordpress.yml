@@ -1,0 +1,13 @@
+---
+  - hosts: all
+
+    tasks:
+      - include: tasks/pre-setup.yml
+
+  - hosts: all
+
+    sudo_user: www-data
+
+    tasks:
+      - include: tasks/core-install.yml
+      - include: tasks/piwee-install.yml
