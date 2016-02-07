@@ -1,14 +1,18 @@
 ---
   - hosts: all
+    roles:
+      - { role: slave, when: "is_slave == 'true'" }
+
     pre_tasks:
       - name: Update APT's cache
         apt: update_cache=yes
 
-      - name: Install python-software-properties and software-properties-common
+      - name: Install python-software-properties and software-properties-common and GIT
         apt: pkg={{item}} state=latest
         with_items:
           - software-properties-common
           - python-software-properties
+          - git
 
   - include: services/system/system.yml
   - include: services/nginx/nginx.yml

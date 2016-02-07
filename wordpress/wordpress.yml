@@ -1,8 +1,4 @@
 ---
-  - hosts: all
-
-    tasks:
-      - include: tasks/pre-setup.yml
 
   - hosts: all
 

@@ -1,8 +1,5 @@
 ---
-
-  - name: Install GIT
-    action: apt name=git
-
+  
   - name: Git clone Piwee
     command: git clone https://github.com/Piwee-DEV/piwee-new.git /var/www/piwee
 
