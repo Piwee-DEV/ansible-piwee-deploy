@@ -1,0 +1,9 @@
+---
+  - hosts: all
+
+    tasks:
+      - include: tasks/setup-varnish.yml
+      - include: tasks/configure-varnish.yml
+
+    handlers:
+      - include: handlers/handlers.yml

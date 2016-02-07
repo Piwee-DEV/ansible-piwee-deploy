@@ -1,0 +1,3 @@
+---
+  - name: restart varnish
+    action: service name=varnish pattern=/etc/init.d/varnish state=restarted enabled=yes

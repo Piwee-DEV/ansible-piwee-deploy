@@ -12,6 +12,7 @@
 
   - include: services/system/system.yml
   - include: services/nginx/nginx.yml
+  - include: services/varnish/varnish.yml
   - include: services/mariadb/mariadb.yml
   - include: services/hhvm/hhvm.yml
   - include: services/memcached/memcached.yml

@@ -1,0 +1,15 @@
+---
+  - name: write /etc/default/varnish
+    action: template src=templates/varnish dest=/etc/default/varnish
+    notify:
+      - restart varnish
+
+  - name: write /etc/varnish/default.vcl
+    action: template src=templates/default.vcl dest=/etc/varnish/default.vcl
+    notify:
+      - restart varnish
+
+  - name: Restart VARNISH
+    service:
+        name: 'varnish'
+        state: 'restarted'

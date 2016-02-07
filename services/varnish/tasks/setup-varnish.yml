@@ -1,0 +1,19 @@
+---
+
+  - name: install apt-transport-https
+    action: apt name=apt-transport-https
+
+  - name: Add varnish key
+    apt_key: url=https://repo.varnish-cache.org/GPG-key.txt
+
+  - name: Add varnish repository
+    apt_repository: repo='deb https://repo.varnish-cache.org/ubuntu/ trusty varnish-4.1'
+
+  - name: install varnish
+    action: apt name=varnish
+
+  - name: write /etc/default/varnish
+    action: template src=templates/varnish dest=/etc/default/varnish
+    notify:
+      - restart varnish
+      
