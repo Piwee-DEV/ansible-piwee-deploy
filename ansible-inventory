@@ -1,2 +1,2 @@
 [piwee_server]
-172.16.207.134 assetsfolder=/Users/alexandrenguyen/web/provisioning/piwee-assets mysql_root_password=piwee123 is_slave=true master_ip=51.255.69.14 master_ssh_password=nYtmzmUY7nYu slave_ssh_password=kazuki69
+91.121.223.193 assetsfolder=/Users/alexandrenguyen/web/provisioning/piwee-assets mysql_root_password=piwee123 is_slave=true master_ip=51.255.69.14 master_ssh_password=nYtmzmUY7nYu slave_ssh_password=piwee123@

@@ -1,19 +1,19 @@
 ---
-  
+
   - name: Git clone Piwee
     command: git clone https://github.com/Piwee-DEV/piwee-new.git /var/www/piwee
 
   - name: Download WordPress
-    get_url: url=http://wordpress.org/wordpress-4.4.2.tar.gz dest=/var/www/wordpress-4.4.2.tar.gz
+    get_url: url=http://wordpress.org/wordpress-4.1.1.tar.gz dest=/var/www/wordpress-4.1.1.tar.gz
 
   - name: Extract archive
-    unarchive: src=/var/www/wordpress-4.4.2.tar.gz dest=/var/www copy=no
+    unarchive: src=/var/www/wordpress-4.1.1.tar.gz dest=/var/www copy=no
 
   - name: Copy all WP files to piwee
     shell: cp -R /var/www/wordpress/* /var/www/piwee
 
   - name: Remove wordpress archive
-    file: path=/var/www/wordpress-4.4.2.tar.gz state=absent
+    file: path=/var/www/wordpress-4.1.1.tar.gz state=absent
 
   - name: Remove wordpress empty folder
     file: path=/var/www/wordpress state=absent

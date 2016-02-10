@@ -1,0 +1,10 @@
+---
+
+  - name: Add PHP apt repo
+    apt_repository: repo='ppa:ondrej/php'
+
+  - name: install php7.0-fpm
+    action: apt name=php7.0-fpm
+
+  - name: install php7.0-mysql
+    action: apt name=php7.0-mysql

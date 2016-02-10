@@ -18,6 +18,6 @@
   - include: services/nginx/nginx.yml
   - include: services/varnish/varnish.yml
   - include: services/mariadb/mariadb.yml
-  - include: services/hhvm/hhvm.yml
+  - include: services/php7-fpm/php7-fpm.yml
   - include: services/memcached/memcached.yml
   - include: wordpress/wordpress.yml
