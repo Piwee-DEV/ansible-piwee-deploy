@@ -1,0 +1,11 @@
+[remus]
+user = www-data
+group = www-data
+listen = /run/php/php7.0-fpm-remus.sock
+listen.owner = www-data
+listen.group = www-data
+pm = dynamic
+pm.max_children = 200
+pm.start_servers = 2
+pm.min_spare_servers = 1
+pm.max_spare_servers = 100

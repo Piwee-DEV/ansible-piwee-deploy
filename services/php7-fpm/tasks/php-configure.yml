@@ -1,0 +1,15 @@
+---
+
+  - name: Remove default php pool site
+    file: path=/etc/php/7.0/fpm/pool.d/www.conf state=absent
+
+  - name: Copy new pool site [romulus] template
+    action: template src=templates/romulus.conf.j2 dest=/etc/php/7.0/fpm/pool.d/romulus.conf
+
+  - name: Copy new pool site [remus] template
+    action: template src=templates/remus.conf.j2 dest=/etc/php/7.0/fpm/pool.d/remus.conf
+
+  - name: Finally restart PHP-FPM
+    service:
+        name: 'php7.0-fpm'
+        state: 'restarted'
