@@ -3,5 +3,4 @@
 
     tasks:
       - include: tasks/environment.yml
-      - include: tasks/crontasks.yml
       - include: tasks/hosts.yml
