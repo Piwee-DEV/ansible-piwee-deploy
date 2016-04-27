@@ -22,6 +22,11 @@
     notify:
       - restart varnish
 
+  - name: Run varnish upon startup
+    command: systemctl enable varnish
+    notify:
+      - restart varnish
+
   - name: Restart VARNISH
     service:
         name: 'varnish'
