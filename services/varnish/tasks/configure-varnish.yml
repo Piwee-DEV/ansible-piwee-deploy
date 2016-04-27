@@ -9,6 +9,19 @@
     notify:
       - restart varnish
 
+  - name: Make sure sur varnish.service.d exists
+    file: path=/etc/systemd/system/varnish.service.d
+
+  - name: write /etc/systemd/system/varnish.service.d/customexec.conf
+    action: template src=templates/customexec.conf dest=/etc/systemd/system/varnish.service.d/customexec.conf
+    notify:
+      - restart varnish
+
+  - name: Reload systemd daemons
+    command: systemctl daemon-reload
+    notify:
+      - restart varnish
+
   - name: Restart VARNISH
     service:
         name: 'varnish'

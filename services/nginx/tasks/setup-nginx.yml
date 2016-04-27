@@ -18,6 +18,9 @@
   - name: Ensure the web directory exists
     file: path=/var/www owner=www-data group=www-data state=directory
 
+  - name: Remove the default nginx vhost
+    file: path=/etc/nginx/sites-enabled/default
+
   - name: write nginx.conf
     action: template src=templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf
     notify:
