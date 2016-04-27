@@ -8,3 +8,6 @@
 
   - name: install php7.0-mysql
     action: apt name=php7.0-mysql
+
+  - name: install php-xml
+    action: apt name=php-xml
