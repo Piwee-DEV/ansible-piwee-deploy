@@ -1,8 +1,5 @@
 ---
 
-  - name: Add ansible repository
-    apt_repository: repo='ppa:ansible/ansible'
-
   - name: install ansible
     action: apt name=ansible
 
